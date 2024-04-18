@@ -4,6 +4,9 @@ let isInWinState = false;
 
 
 
+
+
+
 let box1 = document.getElementById('b1');
 let box2 = document.getElementById('b2');
 let box3 = document.getElementById('b3');
@@ -41,22 +44,27 @@ boxes.forEach(box => {
         // console.log( this.querySelector('.box-content').textContent);
         if (boxContent.textContent === ''){
             boxContent.textContent = currentPlayer
+            
         }
 
         if(checkWin(currentPlayer)){
+            document.getElementById('winner').textContent = "Winner is " + currentPlayer
             return;
         }
 
         // for (let i = 0; i < 1; i++) {
         if (currentPlayer === 'X') {
             currentPlayer = 'O';
+            
         } else {
             currentPlayer = 'X';
         }
+        document.getElementById('trackPlayer').textContent = "Current Player:  " + currentPlayer
         checkTie()
         // }
-      });
-      
+    });
+    
+    
 }) 
 
 
@@ -74,11 +82,13 @@ function checkWin(currentPlayer){
             // winningCombos[i].forEach(box => console.log(box.querySelector(".box-content").textContent))
             
         if (winningCombos[i].every(value => value.querySelector(".box-content").textContent === currentPlayer)){
+            
             console.log("winner ", currentPlayer);
             isInWinState = true
             return true
         }
     }
+    document.getElementById('winner').textContent === 'Winner is: '
 }
 
 
@@ -87,10 +97,13 @@ function checkTie() {
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].querySelector(".box-content").textContent === '') {
             return false; 
+           
         }
     }
+    document.getElementById('itsATie').textContent = 'Its a Tie!'
+
     
-    document.getElementById('');
+    
     console.log("It's a tie!");
     return true;
 }
